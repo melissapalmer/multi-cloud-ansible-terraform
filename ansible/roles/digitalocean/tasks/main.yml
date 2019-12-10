@@ -1,0 +1,18 @@
+---
+
+- name: Install Terraform modules
+  command: chdir="{{ role_path }}/terraform" terraform init
+  when: infra_init
+  
+- name: Terraform Plan
+  terraform:
+    project_path: "{{ role_path }}/terraform"
+    state: planned
+    plan_file: "{{ role_path }}/terraform/google.plan"
+  when: infra_init
+  
+- name: Terraform Apply
+  terraform:
+    project_path: "{{ role_path }}/terraform"
+    plan_file: "google.plan"
+  when: infra_init

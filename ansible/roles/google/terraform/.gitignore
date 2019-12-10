@@ -1,0 +1,4 @@
+/.terraform/
+/google.plan
+/terraform.tfstate
+/terraform.tfstate.backup

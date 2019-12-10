@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
+
+  roles:
+    - role: "aws"
+    - role: "google"
+    - role: "digitalocean"

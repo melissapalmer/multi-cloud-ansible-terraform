@@ -1,0 +1,5 @@
+---
+# list of roles to install via ansible-galaxy
+
+- src: geerlingguy.git
+- src: geerlingguy.pip

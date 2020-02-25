@@ -1,0 +1,21 @@
+---
+- hosts: web
+  become: yes 
+  vars:
+    docker_edition: 'ce'
+    docker_install_compose: true
+  
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get update && apt-get -y install python-simplejson
+      
+  roles:
+  - geerlingguy.pip
+  - geerlingguy.docker
+  
+  tasks:
+  - name: test docker version
+    raw: docker --version
+  
+  - name: test docker-compose version
+    raw: docker-compose --version

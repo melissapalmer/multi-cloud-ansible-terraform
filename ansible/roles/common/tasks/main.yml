@@ -16,3 +16,7 @@
     project_path: "{{ role_path }}/../../terraform/{{cloud_provider}}"
     plan_file: "{{cloud_provider}}.plan"
   when: infra_init
+  
+#- name: Terraform inventory {{cloud_provider}}
+#  command: chdir="{{ role_path }}/../../terraform/{{cloud_provider}}" terraform output ansible_inventory > ii
+#  when: infra_init

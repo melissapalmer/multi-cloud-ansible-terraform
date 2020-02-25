@@ -6,6 +6,6 @@
     ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
 
   roles:
-    - role: "aws"
-    - role: "google"
+#    - role: "aws"
+#    - role: "google"
     - role: "digitalocean"

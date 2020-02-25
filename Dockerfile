@@ -4,7 +4,7 @@ ENV TIME_ZONE Africa/Johannesburg
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install -y    
+    apt-get install -y graphviz
 
 ENV ANSIBLE_VERSION 2.9.0
 RUN pip install --upgrade pip ansible=="$ANSIBLE_VERSION"

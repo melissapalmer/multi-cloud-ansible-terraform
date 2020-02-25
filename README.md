@@ -10,8 +10,13 @@ ansible-galaxy install -r ansible/requirements.yml --roles-path ansible/roles
 # Spin up the instances in different cloud providers:
 ansible-playbook --become --become-user=root ansible/create.yml -vvv
 
+# generate diagram 
+terraform graph | dot -Tpng > graph.png
+
 # To tear down everything:
 ansible-playbook ansible/destroy.yml -vvv
+
+docker-compose down
 ```
 
 # References

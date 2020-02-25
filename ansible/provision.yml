@@ -12,6 +12,7 @@
   roles:
   - geerlingguy.pip
   - geerlingguy.docker
+  - geerlingguy.git
   
   tasks:
   - name: test docker version
@@ -19,3 +20,13 @@
   
   - name: test docker-compose version
     raw: docker-compose --version
+    
+  - name: Clone git repo
+    git:
+      repo: "https://github.com/melissapalmer/openapi-generator-cli.git"
+      dest: "/gitrepo"
+      version: "master"
+      force: true
+      accept_hostkey: true
+      
+      

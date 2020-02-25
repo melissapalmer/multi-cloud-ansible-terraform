@@ -37,6 +37,13 @@ ansible-playbook --become --become-user=root --extra-vars "cloud_provider=google
 ansible-playbook --become --become-user=root --extra-vars "cloud_provider=digitalocean" ansible/create.yml -vvv
 ansible-playbook --become --become-user=root --inventory ansible/environments/dev/inventory ansible/provision.yml -vvv
 
+ansible-playbook --become --become-user=root --inventory ansible/environments/dev/inventory --tags quickstart ansible/provision.yml -vvv
+
+cat ansible/environments/dev/inventory
+got to (ip of not machine can see it in ansible/environments/dev/inventory)
+- http://64.227.7.124:5000/
+- http://64.227.7.124:5001/ 
+
 # generate diagram 
 terraform graph | dot -Tpng > graph.png
 

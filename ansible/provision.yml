@@ -7,7 +7,7 @@
   
   pre_tasks:
     - name: 'install python2'
-      raw: sudo apt-get update && apt-get -y install python-simplejson
+      raw: sudo apt-get update && apt-get -y install python-simplejson && apt-get -y install python-docker
       
   roles:
   - geerlingguy.pip
@@ -16,17 +16,46 @@
   
   tasks:
   - name: test docker version
-    raw: docker --version
+    raw: docker --version   
+    tags: ['quickstart'] 
   
   - name: test docker-compose version
     raw: docker-compose --version
+    tags: ['quickstart']
     
   - name: Clone git repo
     git:
-      repo: "https://github.com/melissapalmer/openapi-generator-cli.git"
-      dest: "/gitrepo"
+      repo: "https://github.com/dockersamples/example-voting-app.git"
+      dest: "/dockersamples"
       version: "master"
       force: true
       accept_hostkey: true
+      
+  - name: Tear down existing services
+    docker_compose:
+      project_src: /dockersamples
+      state: absent
+    #tags: ['quickstart']
+    
+  - name: Create and start services
+    docker_compose:
+      project_src: /dockersamples
+      build: no
+    register: output
+    tags: ['quickstart']
+  - debug:
+      var: output
+
+  - name: Run `docker-compose up` again
+    docker_compose:
+      project_src: /dockersamples
+      build: no
+    register: output
+    tags: ['quickstart']
+  - debug:
+      var: output
+  - assert:
+      that: "not output.changed "
+      
       
       

@@ -2,29 +2,8 @@
 - hosts: localhost
   connection: local
   gather_facts: false
+  vars:
+    ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
 
-  tasks:
-    - name: Terraform Destroy ansible
-      terraform:
-        project_path: "{{ playbook_dir }}/roles/aws/terraform"
-        state: absent
-      register: tfout
-
-    - debug: var=tfout
-    
-    - name: Terraform Destroy google
-      terraform:
-        project_path: "{{ playbook_dir }}/roles/google/terraform"
-        state: absent
-      register: tfout
-
-    - debug: var=tfout
-
-    
-    - name: Terraform Destroy DigitalOcean
-      terraform:
-        project_path: "{{ playbook_dir }}/roles/digitalocean/terraform"
-        state: absent
-      register: tfout
-
-    - debug: var=tfout
+  roles:
+    - role: "destroy"

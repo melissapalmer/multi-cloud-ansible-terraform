@@ -8,4 +8,5 @@
   roles:
 #    - role: "aws"
 #    - role: "google"
-    - role: "digitalocean"
+#    - role: "digitalocean"
+    - role: "common"

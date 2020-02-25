@@ -1,4 +1,5 @@
 /.terraform/
+/digital.plan
 /terraform.tfstate
 /terraform.tfstate.backup
-/google.plan
+/digitalocean.plan

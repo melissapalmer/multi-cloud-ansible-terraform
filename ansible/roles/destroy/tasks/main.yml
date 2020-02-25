@@ -1,0 +1,7 @@
+---
+- name: Terraform Destroy {{cloud_provider}}
+  terraform:
+    project_path: "{{ role_path }}/../../terraform/{{cloud_provider}}"
+    state: absent
+  register: tfout
+- debug: var=tfout

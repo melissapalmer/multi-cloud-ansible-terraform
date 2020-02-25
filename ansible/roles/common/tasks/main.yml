@@ -1,0 +1,18 @@
+---
+
+- name: Install Terraform modules {{cloud_provider}}
+  command: chdir="{{ role_path }}/../../terraform/{{cloud_provider}}" terraform init
+  when: infra_init
+  
+- name: Terraform Plan {{cloud_provider}}
+  terraform:
+    project_path: "{{ role_path }}/../../terraform/{{cloud_provider}}"
+    state: planned
+    plan_file: "{{ role_path }}/../../terraform/{{cloud_provider}}/{{cloud_provider}}.plan"
+  when: infra_init
+  
+- name: Terraform Apply {{cloud_provider}}
+  terraform:
+    project_path: "{{ role_path }}/../../terraform/{{cloud_provider}}"
+    plan_file: "{{cloud_provider}}.plan"
+  when: infra_init
